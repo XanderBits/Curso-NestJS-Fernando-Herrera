@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 /* Inyeccion de dependencia: Servicio de Cars.
 * Los servicio alojan la lógica de negocio de tal manera que sea 
 reutilizable mediante inyección de dependencias.
@@ -26,6 +26,10 @@ export class CarsService {
         return this.cars
     }
     findOneById(id: number){
-        return this.cars[id]
+        /* Array.prototype.find(): El método find() devuelve el valor del primer elemento 
+        del array que cumple la función de prueba proporcionada. */
+       const car =  this.cars.find(car => car.id === id);
+       if (!car) throw new NotFoundException(`Car with id ${id} not found`);
+       return car
     }
 }

@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Car } from './interfaces/car.interface';
 import { v4 as uuid } from 'uuid'
+import { CreateCarDto } from './dto/create-cars.dto';
 /* Inyeccion de dependencia: Servicio de Cars.
 * Los servicio alojan la lógica de negocio de tal manera que sea 
 reutilizable mediante inyección de dependencias.
@@ -33,5 +34,14 @@ export class CarsService {
        const car =  this.cars.find(car => car.id === id);
        if (!car) throw new NotFoundException(`Car with id ${id} not found`);
        return car
+    }
+    create(createCarDto: CreateCarDto){
+        const car: Car = {
+            id: uuid(), 
+            brand: createCarDto.brand,  
+            model:createCarDto.model, 
+        }
+        this.cars.push(car);    
+        return car; 
     }
 }

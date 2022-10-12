@@ -27,7 +27,7 @@ export class CarsController {
     //@Post Para peticiones de tipo POST, para crear data.
     @Post()
     createCar(@Body() createCarDto : CreateCarDto){
-        return createCarDto
+        return this.carsService.create(createCarDto);
     }
     //@Patch Para modificar data.
     @Patch(':id')

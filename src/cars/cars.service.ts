@@ -59,4 +59,9 @@ export class CarsService {
         })
         return carDB;   
     }
+    delete(id: string){
+        const car = this.findOneById( id );
+        const index: number = this.cars.indexOf(car)
+        return this.cars.splice(index, 1);
+    }
 }

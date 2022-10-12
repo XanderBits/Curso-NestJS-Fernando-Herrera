@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, ParseUUIDPipe, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, ParseUUIDPipe, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CarsService } from './cars.service';
 import { CreateCarDto } from './dto/create-cars.dto';
 
@@ -8,6 +8,7 @@ cadena 'cars' como argumento automaticamente nest esta creando una ruta para pod
 las request, en este caso tendriamos algo parecido a "localhost:PORT/cars"
 */
 @Controller('cars')
+@UsePipes( ValidationPipe )
 export class CarsController {
     constructor( private readonly carsService: CarsService
     ) {}

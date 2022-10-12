@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Car } from './interfaces/car.interface';
 import { v4 as uuid } from 'uuid'
-import { CreateCarDto } from './dto/create-cars.dto';
+import { UpdateCarDto,  CreateCarDto  } from './dto/index';
 /* Inyeccion de dependencia: Servicio de Cars.
 * Los servicio alojan la lógica de negocio de tal manera que sea 
 reutilizable mediante inyección de dependencias.
@@ -43,5 +43,8 @@ export class CarsService {
         }
         this.cars.push(car);    
         return car; 
+    }
+    update(id: string, updateCarDto : UpdateCarDto){
+
     }
 }

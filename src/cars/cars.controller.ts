@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, ParseUUIDPipe, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CarsService } from './cars.service';
 import { CreateCarDto } from './dto/create-cars.dto';
+import { UpdateCarDto } from './dto/update-cars.dto';
 
 /*Utilizamos el decorador @Controller para indicar que nuestra clase es un Nest controller y asi poder manejar
 todas las peticiones recibidas y enviar las respectivas respuestas. Al utilizar este decorador e escribir la
@@ -32,11 +33,11 @@ export class CarsController {
     //@Patch Para modificar data.
     @Patch(':id')
     updateCar(
-        @Param ('id', ParseIntPipe) id: number,
-        @Body() body : any 
+        @Param ('id', ParseUUIDPipe) id: string,
+        @Body() updateCarDto: UpdateCarDto
     )
         {
-            return body; 
+            return updateCarDto; 
         }
 
     //@Delete Para eliminar data.

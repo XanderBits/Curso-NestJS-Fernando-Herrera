@@ -64,4 +64,7 @@ export class CarsService {
         const index: number = this.cars.indexOf(car)
         return this.cars.splice(index, 1);
     }
+    fillCarsWithSeedData( cars: Car[] ) {
+        this.cars = cars;
+    }
 }
